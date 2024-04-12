@@ -45,6 +45,9 @@ namespace RecipeApp
                     case 4:
                         Recipe.ResetRecipeScale();
                         break;
+                    case 5:
+                        Recipe.ClearRecipe();
+                        break;
                     case 6:
                         break;
                 }

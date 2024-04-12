@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,10 @@ namespace RecipeApp
                 ingrUnitMeasurement = Console.ReadLine();
                 ingredientsDictionary.Add(ingrName, ingrUnitMeasurement);
             }
+            for (int i = 0; i < ingrQty.Count(); i++)
+            {
+                originalQty.Add(ingrQty[i]);
+            }
 
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
@@ -66,61 +71,77 @@ namespace RecipeApp
             Console.WriteLine("Recipe details");
             Console.WriteLine("-------------------------------------------------------------");
 
-            int i = 0;
-            foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
+            if (numIngredients != 0)
             {
-                Console.WriteLine("Ingredient: " + keyValuePair.Key + " " + ingrQty[i] + " " +  keyValuePair.Value);
+                int i = 0;
+                foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
+                {
+                    Console.WriteLine("Ingredient: " + keyValuePair.Key + " " + ingrQty[i] + " " + keyValuePair.Value);
 
-                i++;
+                    i++;
+                }
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
             }
-            Console.WriteLine("Press any key to return to menu");
-            Console.ReadKey();
+            else
+            {
+                Console.WriteLine("No recipe stored");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+            }
         }
 
         public static void ScaleRecipe()
         {
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
-            Console.WriteLine("Please choose scaling amount");
+            Console.WriteLine("Recipe Scaling");
             Console.WriteLine("-------------------------------------------------------------");
-            Console.WriteLine("1 -- 0.5 (Half)");
-            Console.WriteLine("2 -- 2 (Double)");
-            Console.WriteLine("3 -- 3 (Triple)");
 
-            int scalingChoice = int.Parse(Console.ReadLine());
+            if (numIngredients != 0)
+            {
 
-            for (int i = 0; i < ingrQty.Count(); i++)
-            {
-                originalQty.Add(ingrQty[i]);
-            }
+                Console.WriteLine("Please choose a scaling amount");
+                Console.WriteLine("1 -- 0.5 (Half)");
+                Console.WriteLine("2 -- 2 (Double)");
+                Console.WriteLine("3 -- 3 (Triple)");
 
-            if (scalingChoice == 1)
-            {
-                for (int i = 0; i < numIngredients; i++)
+                int scalingChoice = int.Parse(Console.ReadLine());
+
+                if (scalingChoice == 1)
                 {
-                    ingrQty[i] = ingrQty[i] * 0.5;
+                    for (int i = 0; i < numIngredients; i++)
+                    {
+                        ingrQty[i] = ingrQty[i] * 0.5;
+                    }
+                    Console.WriteLine("Recipe quantites have been halved");
+                    Console.WriteLine("Press any key to return to menu");
+                    Console.ReadKey();
                 }
-                Console.WriteLine("Recipe quantites have been halved");
-                Console.WriteLine("Press any key to return to menu");
-                Console.ReadKey();
+                else if (scalingChoice == 2)
+                {
+                    for (int i = 0; i < numIngredients; i++)
+                    {
+                        ingrQty[i] = ingrQty[i] * 2;
+                    }
+                    Console.WriteLine("Recipe quantites have been doubled");
+                    Console.WriteLine("Press any key to return to menu");
+                    Console.ReadKey();
+                }
+                else if (scalingChoice == 3)
+                {
+                    for (int i = 0; i < numIngredients; i++)
+                    {
+                        ingrQty[i] = ingrQty[i] * 3;
+                    }
+                    Console.WriteLine("Recipe quantites have been tripled");
+                    Console.WriteLine("Press any key to return to menu");
+                    Console.ReadKey();
+                }
             }
-            else if (scalingChoice == 2)
+            else
             {
-                for (int i = 0; i < numIngredients; i++)
-                {
-                    ingrQty[i] = ingrQty[i] * 2;
-                }
-                Console.WriteLine("Recipe quantites have been doubled");
-                Console.WriteLine("Press any key to return to menu");
-                Console.ReadKey();
-            }
-            else if (scalingChoice == 3)
-            {
-                for (int i = 0; i < numIngredients; i++)
-                {
-                    ingrQty[i] = ingrQty[i] * 3;
-                }
-                Console.WriteLine("Recipe quantites have been tripled");
+                Console.WriteLine("No recipe stored");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
             }
@@ -128,18 +149,41 @@ namespace RecipeApp
 
         public static void ResetRecipeScale()
         {
-            for (int i = 0; i < ingrQty.Count(); i++)
+            if (numIngredients != 0)
             {
-                ingrQty[i] = originalQty[i];
-            }
+                for (int i = 0; i < ingrQty.Count(); i++)
+                {
+                    ingrQty[i] = originalQty[i];
+                }
 
+                Console.Clear();
+                Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("Recipe quantites reset");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("No recipe stored");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+            }
+        }
+
+        public static void ClearRecipe()
+        {
+            numIngredients = 0;
+            ingredientsDictionary.Clear();
+            ingrQty.Clear();
+            stepDescription.Clear();
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
-            Console.WriteLine("Recipe quantites reset");
+            Console.WriteLine("Recipe Deleted");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Press any key to return to menu");
             Console.ReadKey();
         }
-
     }
 }
