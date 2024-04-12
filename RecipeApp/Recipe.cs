@@ -10,7 +10,7 @@ namespace RecipeApp
     {
         public static string ingrName;
         public static string ingrUnitMeasurement;
-        public static List<double> ingrQtyList = new List<double>();
+        public static List<double> ingrQty = new List<double>();
         public static List<string> stepDescription = new List<String>();
         public static Dictionary<string, string> ingredientsDictionary = new Dictionary<string, string>();
 
@@ -28,7 +28,7 @@ namespace RecipeApp
                 Console.WriteLine("Please enter ingredient name:");
                 ingrName = Console.ReadLine();
                 Console.WriteLine("Please enter ingredient quantity:");
-                ingrQtyList.Add(int.Parse(Console.ReadLine()));
+                ingrQty.Add(int.Parse(Console.ReadLine()));
                 Console.WriteLine("Please enter ingredient unit measurement:");
                 ingrUnitMeasurement = Console.ReadLine();
                 ingredientsDictionary.Add(ingrName, ingrUnitMeasurement);
@@ -44,6 +44,20 @@ namespace RecipeApp
                 stepDescription.Add(Console.ReadLine());
             }
             
+        }
+
+        public static void DisplayRecipe()
+        {
+            Console.Clear();
+            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("Recipe details");
+            Console.WriteLine("-------------------------------------------------------------");
+
+            int i = 0;
+            foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
+            {
+                Console.Write("Ingredient " + i+1 + keyValuePair.Key + ingrQty[i] +  keyValuePair.Value);
+            }
         }
     }
 }

@@ -11,23 +11,37 @@ namespace RecipeApp
         Recipe myRecipe = new Recipe();
         public static void AppMenu() 
         {
-            Console.WriteLine("Welcome to your Recipe app");
-            Console.WriteLine("-------------------------------------------------------------");
-            Console.WriteLine("Please enter the number of your choice");
-            Console.WriteLine("-------------------------------------------------------------");
-            Console.WriteLine("1 -- Add a new recipe");
-            Console.WriteLine("2 -- Display recipe");
-            Console.WriteLine("3 -- Scale recipe");
-            Console.WriteLine("4 -- Reset recipe scaling");
-            Console.WriteLine("5 -- Clear Recipe data");
+            int userChoice = 0;
 
-            string userChoice = Console.ReadLine();
-
-            switch (userChoice) 
+            do
             {
-                case "1":
-                    Recipe.InputRecipe();
+                Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("Please enter the number of your choice");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("1 -- Add a new recipe");
+                Console.WriteLine("2 -- Display recipe");
+                Console.WriteLine("3 -- Scale recipe");
+                Console.WriteLine("4 -- Reset recipe scaling");
+                Console.WriteLine("5 -- Clear Recipe data");
+                Console.WriteLine("6 -- Exit application");
+
+                userChoice = int.Parse(Console.ReadLine());
+
+                switch (userChoice)
+                {
+                    case 1:
+                        Recipe.InputRecipe();
+                        break;
+
+                    case 2:
+                        Recipe.DisplayRecipe();
+                        break;
+
+                    case 6:
+                        break;
+                }
             }
+            while (userChoice != 6);
         }
     }
 }
