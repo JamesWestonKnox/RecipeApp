@@ -10,21 +10,27 @@ namespace RecipeApp
     {
         public static string ingrName;
         public static string ingrUnitMeasurement;
+        public static int numIngredients;
         public static List<double> ingrQty = new List<double>();
+        public static List<double> originalQty = new List<double>();
         public static List<string> stepDescription = new List<String>();
         public static Dictionary<string, string> ingredientsDictionary = new Dictionary<string, string>();
 
         public static void InputRecipe()
-        { 
+        {
+            Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter the number of ingredients needed:");
-            int numIngredients = int.Parse(Console.ReadLine());
+            numIngredients = int.Parse(Console.ReadLine());
             
             for (int i = 0; i < numIngredients; i++) 
             {
                 Console.Clear();
+                Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("Enter new recipe details");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Please enter ingredient name:");
                 ingrName = Console.ReadLine();
                 Console.WriteLine("Please enter ingredient quantity:");
@@ -34,12 +40,19 @@ namespace RecipeApp
                 ingredientsDictionary.Add(ingrName, ingrUnitMeasurement);
             }
 
+            Console.Clear();
+            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("Enter new recipe details");
+            Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter number of steps");
             int numSteps = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < numSteps; i++) 
             {
                 Console.Clear();
+                Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("Enter new recipe details");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Please enter step description");
                 stepDescription.Add(Console.ReadLine());
             }
@@ -56,8 +69,77 @@ namespace RecipeApp
             int i = 0;
             foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
             {
-                Console.Write("Ingredient " + i+1 + keyValuePair.Key + ingrQty[i] +  keyValuePair.Value);
+                Console.WriteLine("Ingredient: " + keyValuePair.Key + " " + ingrQty[i] + " " +  keyValuePair.Value);
+
+                i++;
+            }
+            Console.WriteLine("Press any key to return to menu");
+            Console.ReadKey();
+        }
+
+        public static void ScaleRecipe()
+        {
+            Console.Clear();
+            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("Please choose scaling amount");
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("1 -- 0.5 (Half)");
+            Console.WriteLine("2 -- 2 (Double)");
+            Console.WriteLine("3 -- 3 (Triple)");
+
+            int scalingChoice = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < ingrQty.Count(); i++)
+            {
+                originalQty.Add(ingrQty[i]);
+            }
+
+            if (scalingChoice == 1)
+            {
+                for (int i = 0; i < numIngredients; i++)
+                {
+                    ingrQty[i] = ingrQty[i] * 0.5;
+                }
+                Console.WriteLine("Recipe quantites have been halved");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+            }
+            else if (scalingChoice == 2)
+            {
+                for (int i = 0; i < numIngredients; i++)
+                {
+                    ingrQty[i] = ingrQty[i] * 2;
+                }
+                Console.WriteLine("Recipe quantites have been doubled");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+            }
+            else if (scalingChoice == 3)
+            {
+                for (int i = 0; i < numIngredients; i++)
+                {
+                    ingrQty[i] = ingrQty[i] * 3;
+                }
+                Console.WriteLine("Recipe quantites have been tripled");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
             }
         }
+
+        public static void ResetRecipeScale()
+        {
+            for (int i = 0; i < ingrQty.Count(); i++)
+            {
+                ingrQty[i] = originalQty[i];
+            }
+
+            Console.Clear();
+            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("Recipe quantites reset");
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("Press any key to return to menu");
+            Console.ReadKey();
+        }
+
     }
 }

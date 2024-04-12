@@ -15,6 +15,7 @@ namespace RecipeApp
 
             do
             {
+                Console.Clear();
                 Console.WriteLine("****************RECIPE APP*****************");
                 Console.WriteLine("Please enter the number of your choice");
                 Console.WriteLine("-------------------------------------------------------------");
@@ -37,6 +38,13 @@ namespace RecipeApp
                         Recipe.DisplayRecipe();
                         break;
 
+                    case 3:
+                        Recipe.ScaleRecipe();
+                        break;
+
+                    case 4:
+                        Recipe.ResetRecipeScale();
+                        break;
                     case 6:
                         break;
                 }
