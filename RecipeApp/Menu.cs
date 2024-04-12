@@ -23,7 +23,11 @@ namespace RecipeApp
 
             string userChoice = Console.ReadLine();
 
-           
+            switch (userChoice) 
+            {
+                case "1":
+                    Recipe.InputRecipe();
+            }
         }
     }
 }
