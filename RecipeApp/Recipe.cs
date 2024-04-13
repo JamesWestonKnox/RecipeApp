@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -12,6 +13,7 @@ namespace RecipeApp
         public static string ingrName;
         public static string ingrUnitMeasurement;
         public static int numIngredients;
+        public static int numSteps;
         public static List<double> ingrQty = new List<double>();
         public static List<double> originalQty = new List<double>();
         public static List<string> stepDescription = new List<String>();
@@ -50,7 +52,7 @@ namespace RecipeApp
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter number of steps");
-            int numSteps = int.Parse(Console.ReadLine());
+            numSteps = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < numSteps; i++) 
             {
@@ -68,7 +70,7 @@ namespace RecipeApp
         {
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
-            Console.WriteLine("Recipe details");
+            Console.WriteLine("Recipe display");
             Console.WriteLine("-------------------------------------------------------------");
 
             if (numIngredients != 0)
@@ -76,9 +78,15 @@ namespace RecipeApp
                 int i = 0;
                 foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
                 {
-                    Console.WriteLine("Ingredient: " + keyValuePair.Key + " " + ingrQty[i] + " " + keyValuePair.Value);
-
+                    Console.WriteLine("Ingredient {0}: " + keyValuePair.Key + " " + ingrQty[i] + " " + keyValuePair.Value, i+1);
                     i++;
+                }
+
+                int j = 0;
+                foreach(string step in stepDescription)
+                {
+                    Console.WriteLine("Step {0}: " + stepDescription[j], j+1);
+                    j++;
                 }
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
@@ -149,6 +157,11 @@ namespace RecipeApp
 
         public static void ResetRecipeScale()
         {
+            Console.Clear();
+            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("Recipe reset");
+            Console.WriteLine("-------------------------------------------------------------");
+
             if (numIngredients != 0)
             {
                 for (int i = 0; i < ingrQty.Count(); i++)
@@ -156,16 +169,12 @@ namespace RecipeApp
                     ingrQty[i] = originalQty[i];
                 }
 
-                Console.Clear();
-                Console.WriteLine("****************RECIPE APP*****************");
-                Console.WriteLine("Recipe quantites reset");
-                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Recipe quantities have been reset to orginal values");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
             }
             else
             {
-                Console.Clear();
                 Console.WriteLine("No recipe stored");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
@@ -180,8 +189,9 @@ namespace RecipeApp
             stepDescription.Clear();
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
-            Console.WriteLine("Recipe Deleted");
+            Console.WriteLine("Delete recipe");
             Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("Recipe has been deleted");
             Console.WriteLine("Press any key to return to menu");
             Console.ReadKey();
         }
