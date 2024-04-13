@@ -10,6 +10,7 @@ namespace RecipeApp
     {
         public static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Menu.AppMenu();
         }
         

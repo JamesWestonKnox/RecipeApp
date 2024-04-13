@@ -86,7 +86,7 @@ namespace RecipeApp
                 int i = 0;
                 foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
                 {
-                    Console.WriteLine("Ingredient {0}: " + keyValuePair.Key + " " + ingrQty[i] + " " + keyValuePair.Value, i+1);
+                    Console.WriteLine("Ingredient {0}: " + ingrQty[i] + " " + keyValuePair.Value + " of " + keyValuePair.Key, i+1);
                     i++;
                 }
 
