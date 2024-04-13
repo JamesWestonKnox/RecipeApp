@@ -23,6 +23,7 @@ namespace RecipeApp
         {
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter the number of ingredients needed:");
@@ -32,6 +33,7 @@ namespace RecipeApp
             {
                 Console.Clear();
                 Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Enter new recipe details");
                 Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Please enter ingredient name:");
@@ -49,6 +51,7 @@ namespace RecipeApp
 
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter number of steps");
@@ -58,6 +61,7 @@ namespace RecipeApp
             {
                 Console.Clear();
                 Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Enter new recipe details");
                 Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Please enter step description");
@@ -70,11 +74,15 @@ namespace RecipeApp
         {
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
-            Console.WriteLine("Recipe display");
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("Saved Recipe");
             Console.WriteLine("-------------------------------------------------------------");
 
             if (numIngredients != 0)
             {
+                Console.WriteLine("Ingredients");
+                Console.WriteLine("-------------------------------------------------------------");
+
                 int i = 0;
                 foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
                 {
@@ -82,18 +90,25 @@ namespace RecipeApp
                     i++;
                 }
 
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Steps");
+                Console.WriteLine("-------------------------------------------------------------");
+                
                 int j = 0;
                 foreach(string step in stepDescription)
                 {
                     Console.WriteLine("Step {0}: " + stepDescription[j], j+1);
                     j++;
                 }
+
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("No recipe stored");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
             }
@@ -103,6 +118,7 @@ namespace RecipeApp
         {
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Recipe Scaling");
             Console.WriteLine("-------------------------------------------------------------");
 
@@ -123,6 +139,7 @@ namespace RecipeApp
                         ingrQty[i] = ingrQty[i] * 0.5;
                     }
                     Console.WriteLine("Recipe quantites have been halved");
+                    Console.WriteLine("-------------------------------------------------------------");
                     Console.WriteLine("Press any key to return to menu");
                     Console.ReadKey();
                 }
@@ -133,6 +150,7 @@ namespace RecipeApp
                         ingrQty[i] = ingrQty[i] * 2;
                     }
                     Console.WriteLine("Recipe quantites have been doubled");
+                    Console.WriteLine("-------------------------------------------------------------");
                     Console.WriteLine("Press any key to return to menu");
                     Console.ReadKey();
                 }
@@ -143,6 +161,7 @@ namespace RecipeApp
                         ingrQty[i] = ingrQty[i] * 3;
                     }
                     Console.WriteLine("Recipe quantites have been tripled");
+                    Console.WriteLine("-------------------------------------------------------------");
                     Console.WriteLine("Press any key to return to menu");
                     Console.ReadKey();
                 }
@@ -150,6 +169,7 @@ namespace RecipeApp
             else
             {
                 Console.WriteLine("No recipe stored");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
             }
@@ -159,6 +179,7 @@ namespace RecipeApp
         {
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Recipe reset");
             Console.WriteLine("-------------------------------------------------------------");
 
@@ -170,12 +191,14 @@ namespace RecipeApp
                 }
 
                 Console.WriteLine("Recipe quantities have been reset to orginal values");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("No recipe stored");
+                Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Press any key to return to menu");
                 Console.ReadKey();
             }
@@ -189,9 +212,11 @@ namespace RecipeApp
             stepDescription.Clear();
             Console.Clear();
             Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Delete recipe");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Recipe has been deleted");
+            Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Press any key to return to menu");
             Console.ReadKey();
         }
