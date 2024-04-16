@@ -22,7 +22,7 @@ namespace RecipeApp
         public static void InputRecipe()
         {
             Console.Clear();
-            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
@@ -32,7 +32,7 @@ namespace RecipeApp
             for (int i = 0; i < numIngredients; i++) 
             {
                 Console.Clear();
-                Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("*************************RECIPE APP**************************");
                 Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Enter new recipe details");
                 Console.WriteLine("-------------------------------------------------------------");
@@ -50,7 +50,7 @@ namespace RecipeApp
             }
 
             Console.Clear();
-            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
@@ -60,7 +60,7 @@ namespace RecipeApp
             for (int i = 0; i < numSteps; i++) 
             {
                 Console.Clear();
-                Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("*************************RECIPE APP**************************");
                 Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Enter new recipe details");
                 Console.WriteLine("-------------------------------------------------------------");
@@ -73,7 +73,7 @@ namespace RecipeApp
         public static void DisplayRecipe()
         {
             Console.Clear();
-            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Saved Recipe");
             Console.WriteLine("-------------------------------------------------------------");
@@ -117,7 +117,7 @@ namespace RecipeApp
         public static void ScaleRecipe()
         {
             Console.Clear();
-            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Recipe Scaling");
             Console.WriteLine("-------------------------------------------------------------");
@@ -178,7 +178,7 @@ namespace RecipeApp
         public static void ResetRecipeScale()
         {
             Console.Clear();
-            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Recipe reset");
             Console.WriteLine("-------------------------------------------------------------");
@@ -211,7 +211,7 @@ namespace RecipeApp
             ingrQty.Clear();
             stepDescription.Clear();
             Console.Clear();
-            Console.WriteLine("****************RECIPE APP*****************");
+            Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Delete recipe");
             Console.WriteLine("-------------------------------------------------------------");

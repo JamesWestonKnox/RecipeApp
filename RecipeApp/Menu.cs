@@ -9,14 +9,14 @@ namespace RecipeApp
     internal class Menu
     {
         Recipe myRecipe = new Recipe();
-        public static void AppMenu() 
+        public static void AppMenu()
         {
             int userChoice = 0;
 
             do
             {
                 Console.Clear();
-                Console.WriteLine("****************RECIPE APP*****************");
+                Console.WriteLine("*************************RECIPE APP**************************");
                 Console.WriteLine("Please enter the number of your choice");
                 Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("1 -- Add a new recipe");
@@ -26,8 +26,27 @@ namespace RecipeApp
                 Console.WriteLine("5 -- Clear Recipe data");
                 Console.WriteLine("6 -- Exit application");
 
-                userChoice = int.Parse(Console.ReadLine());
 
+                bool correctInput = false;
+                while (!correctInput)
+                {
+                    try
+                    {
+                        userChoice = int.Parse(Console.ReadLine());
+                        if (userChoice >= 1 && userChoice <= 6)
+                        {
+                            correctInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please choose a number between 1 and 6.");
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Incorrect Input Format. Please choose a number between 1 and 6.");
+                    }
+                }
                 switch (userChoice)
                 {
                     case 1:
@@ -50,9 +69,11 @@ namespace RecipeApp
                         break;
                     case 6:
                         break;
+                    default:
+                        break;
                 }
             }
-            while (userChoice != 6);
+            while (userChoice != 6);         
         }
     }
 }
