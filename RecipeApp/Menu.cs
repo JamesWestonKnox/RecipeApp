@@ -42,9 +42,10 @@ namespace RecipeApp
                             Console.WriteLine("Please choose a number between 1 and 6.");
                         }
                     }
-                    catch (FormatException)
+                    catch (FormatException e)
                     {
-                        Console.WriteLine("Incorrect Input Format. Please choose a number between 1 and 6.");
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please choose a number between 1 and 6.");
                     }
                 }
                 switch (userChoice)

@@ -27,7 +27,21 @@ namespace RecipeApp
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter the number of ingredients needed:");
-            numIngredients = int.Parse(Console.ReadLine());
+
+            bool correctInput = false;
+            while (!correctInput)
+            {
+                try
+                {
+                    numIngredients = int.Parse(Console.ReadLine());
+                    correctInput = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Input was not in correct format.");
+                    Console.WriteLine("Please enter a number.");
+                }
+            }
             
             for (int i = 0; i < numIngredients; i++) 
             {
@@ -39,11 +53,27 @@ namespace RecipeApp
                 Console.WriteLine("Please enter ingredient name:");
                 ingrName = Console.ReadLine();
                 Console.WriteLine("Please enter ingredient quantity:");
-                ingrQty.Add(int.Parse(Console.ReadLine()));
+
+                correctInput = false;
+                while (!correctInput)
+                {
+                    try
+                    {
+                        ingrQty.Add(int.Parse(Console.ReadLine()));
+                        correctInput = true;
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please enter a number.");
+                    }
+                }
+
                 Console.WriteLine("Please enter ingredient unit measurement:");
                 ingrUnitMeasurement = Console.ReadLine();
                 ingredientsDictionary.Add(ingrName, ingrUnitMeasurement);
             }
+
             for (int i = 0; i < ingrQty.Count(); i++)
             {
                 originalQty.Add(ingrQty[i]);
@@ -55,7 +85,21 @@ namespace RecipeApp
             Console.WriteLine("Enter new recipe details");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter number of steps");
-            numSteps = int.Parse(Console.ReadLine());
+
+            correctInput = false;
+            while (!correctInput)
+            {
+                try
+                {
+                    numSteps = int.Parse(Console.ReadLine());
+                    correctInput = true;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Input was not in correct format.");
+                    Console.WriteLine("Please enter a number.");
+                }
+            }
 
             for (int i = 0; i < numSteps; i++) 
             {
@@ -124,13 +168,36 @@ namespace RecipeApp
 
             if (numIngredients != 0)
             {
-
+                int scalingChoice = 0;
                 Console.WriteLine("Please choose a scaling amount");
                 Console.WriteLine("1 -- 0.5 (Half)");
                 Console.WriteLine("2 -- 2 (Double)");
                 Console.WriteLine("3 -- 3 (Triple)");
 
-                int scalingChoice = int.Parse(Console.ReadLine());
+                bool correctInput = false;
+
+                while (!correctInput)
+                {
+                    try
+                    {
+                        scalingChoice = int.Parse(Console.ReadLine());
+                        if (scalingChoice >= 1 && scalingChoice <= 3)
+                        {
+                            correctInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please choose a number between 1 and 3.");
+                        }
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please choose a number between 1 and 3.");
+                    }
+                }
+
+
 
                 if (scalingChoice == 1)
                 {
