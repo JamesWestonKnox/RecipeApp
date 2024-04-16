@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -19,6 +20,7 @@ namespace RecipeApp
         public static List<string> stepDescription = new List<String>();
         public static Dictionary<string, string> ingredientsDictionary = new Dictionary<string, string>();
 
+        //Method to prompt user for recipe input and populates arrays
         public static void InputRecipe()
         {
             Console.Clear();
@@ -28,6 +30,7 @@ namespace RecipeApp
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Please enter the number of ingredients needed:");
 
+            //while loop and try-catch block checking that user inputs an interger
             bool correctInput = false;
             while (!correctInput)
             {
@@ -43,6 +46,7 @@ namespace RecipeApp
                 }
             }
             
+            //for-loop that populates ingredients according to number of ingredients entered by user
             for (int i = 0; i < numIngredients; i++) 
             {
                 Console.Clear();
@@ -74,8 +78,10 @@ namespace RecipeApp
                 ingredientsDictionary.Add(ingrName, ingrUnitMeasurement);
             }
 
+            //for-loop that populates new list according to the number of elements in ingrQty 
             for (int i = 0; i < ingrQty.Count(); i++)
             {
+                //List that can be reverted to should the user choose to reset recipe
                 originalQty.Add(ingrQty[i]);
             }
 
@@ -101,6 +107,7 @@ namespace RecipeApp
                 }
             }
 
+            //for-loop that populates steps array
             for (int i = 0; i < numSteps; i++) 
             {
                 Console.Clear();
@@ -114,6 +121,7 @@ namespace RecipeApp
             
         }
 
+        //Display Recipe method that displays all recipe information, if no recipe has been saved it will display a message.
         public static void DisplayRecipe()
         {
             Console.Clear();
@@ -127,6 +135,7 @@ namespace RecipeApp
                 Console.WriteLine("Ingredients");
                 Console.WriteLine("-------------------------------------------------------------");
 
+                //for-each loop printing ingredient details for every ingredient in the ingredientsDictionary
                 int i = 0;
                 foreach (KeyValuePair<string, string> keyValuePair in ingredientsDictionary)
                 {
@@ -138,6 +147,7 @@ namespace RecipeApp
                 Console.WriteLine("Steps");
                 Console.WriteLine("-------------------------------------------------------------");
                 
+                //for-each loop printing step details for each step in stepDescription list
                 int j = 0;
                 foreach(string step in stepDescription)
                 {
@@ -158,6 +168,7 @@ namespace RecipeApp
             }
         }
 
+        //Scale recipe method to allow user to change recipe quantities
         public static void ScaleRecipe()
         {
             Console.Clear();
@@ -166,6 +177,7 @@ namespace RecipeApp
             Console.WriteLine("Recipe Scaling");
             Console.WriteLine("-------------------------------------------------------------");
 
+            //if statement that displays scaling menu as long as a recipe is stored
             if (numIngredients != 0)
             {
                 int scalingChoice = 0;
@@ -198,7 +210,7 @@ namespace RecipeApp
                 }
 
 
-
+                //if-else statment that adjust quantites according to the user choice otherwise displays no recipe message
                 if (scalingChoice == 1)
                 {
                     for (int i = 0; i < numIngredients; i++)
@@ -242,6 +254,7 @@ namespace RecipeApp
             }
         }
 
+        //reset recipe method that resets recipe values to original
         public static void ResetRecipeScale()
         {
             Console.Clear();
@@ -252,6 +265,7 @@ namespace RecipeApp
 
             if (numIngredients != 0)
             {
+                //for loop changing list values back to orignal values using the orginalQty list created earlier
                 for (int i = 0; i < ingrQty.Count(); i++)
                 {
                     ingrQty[i] = originalQty[i];
@@ -271,6 +285,7 @@ namespace RecipeApp
             }
         }
 
+        //clear recipe method that clears all lists and dictionarys and sets numIngredients to 0
         public static void ClearRecipe()
         {
             numIngredients = 0;
@@ -289,3 +304,5 @@ namespace RecipeApp
         }
     }
 }
+
+//--------------------------------------------------------------- oooooo000000000 end of file 000000000oooooo ---------------------------------------------------------------\\

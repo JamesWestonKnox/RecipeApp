@@ -10,6 +10,7 @@ namespace RecipeApp
     {
         public static void Main(string[] args)
         {
+            //Changing text colour to Cyan and then calling the AppMenuMethod
             Console.ForegroundColor = ConsoleColor.Cyan;
             Menu.AppMenu();
         }
@@ -17,3 +18,5 @@ namespace RecipeApp
       
     }
 }
+
+//--------------------------------------------------------------- oooooo000000000 end of file 000000000oooooo ---------------------------------------------------------------\\

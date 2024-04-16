@@ -8,13 +8,18 @@ namespace RecipeApp
 {
     internal class Menu
     {
+        //instatiating new Recipe object
         Recipe myRecipe = new Recipe();
+
+        //app menu method which displays user menu
         public static void AppMenu()
         {
             int userChoice = 0;
 
+            //do-while loop that display the user menu as long as the user does not select number 6 to exit
             do
             {
+                //clears console and prints user menu
                 Console.Clear();
                 Console.WriteLine("*************************RECIPE APP**************************");
                 Console.WriteLine("Please enter the number of your choice");
@@ -26,7 +31,7 @@ namespace RecipeApp
                 Console.WriteLine("5 -- Clear Recipe data");
                 Console.WriteLine("6 -- Exit application");
 
-
+                //while loop containing a try-catch block which checks for format errors in the user choice
                 bool correctInput = false;
                 while (!correctInput)
                 {
@@ -48,6 +53,8 @@ namespace RecipeApp
                         Console.WriteLine("Please choose a number between 1 and 6.");
                     }
                 }
+
+                //switch case which calls different methods depending on user choice
                 switch (userChoice)
                 {
                     case 1:
@@ -78,3 +85,5 @@ namespace RecipeApp
         }
     }
 }
+
+//--------------------------------------------------------------- oooooo000000000 end of file 000000000oooooo ---------------------------------------------------------------\\
