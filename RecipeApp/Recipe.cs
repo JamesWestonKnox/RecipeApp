@@ -9,19 +9,44 @@ using System.Threading.Tasks;
 
 namespace RecipeApp
 {
+    /// <summary>
+    /// </summary>
     internal class Recipe
     {
-        public static string ingrName;
-        public static string ingrUnitMeasurement;
-        public static int numIngredients;
-        public static int numSteps;
-        public static List<double> ingrQty = new List<double>();
-        public static List<double> originalQty = new List<double>();
-        public static List<string> stepDescription = new List<String>();
-        public static Dictionary<string, string> ingredientsDictionary = new Dictionary<string, string>();
+        public string recipeName { get; set; }
+        public Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>> ingredients {get; set;} = new Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>>();
+        public List<string> steps { get; set; } = new List<string>();
+        public Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>> originalIngredientsQty { get; set; } = new Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>>();
 
-        //Method to prompt user for recipe input and populates arrays
-        public static void InputRecipe()
+        public Recipe() { }
+
+        public Recipe(string recipeName)
+        {
+            this.recipeName = recipeName;
+        }
+        
+        public void InputIngredient(string ingrName, double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)
+        {
+            if (ingredients.ContainsKey(ingrName))
+            {
+
+            }
+            else
+            {
+                ingredients[ingrName] = new List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>();
+                originalIngredientsQty[ingrName] = new List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>();
+            }
+
+            ingredients[ingrName].Add((ingrQty, ingrUnit,ingrCalories,ingrFoodGroup));
+            originalIngredientsQty[ingrName].Add((ingrQty, ingrUnit,ingrCalories,ingrFoodGroup));
+        }
+
+        public void inputStep(string step)
+        {
+            steps.Add(step);
+        }
+
+        private static void InputRecipe()
         {
             Console.Clear();
             Console.WriteLine("*************************RECIPE APP**************************");

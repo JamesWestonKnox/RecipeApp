@@ -8,12 +8,13 @@ namespace RecipeApp
 {
     internal class Menu
     {
-        //instatiating new Recipe object
-        Recipe myRecipe = new Recipe();
+        //Declaring List of recipes.
+        private static List<Recipe> Recipes = new List<Recipe>;
 
         //app menu method which displays user menu
         public static void AppMenu()
         {
+            
             int userChoice = 0;
 
             //do-while loop that display the user menu as long as the user does not select number 6 to exit
@@ -25,7 +26,7 @@ namespace RecipeApp
                 Console.WriteLine("Please enter the number of your choice");
                 Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("1 -- Add a new recipe");
-                Console.WriteLine("2 -- Display recipe");
+                Console.WriteLine("2 -- Display recipes");
                 Console.WriteLine("3 -- Scale recipe");
                 Console.WriteLine("4 -- Reset recipe scaling");
                 Console.WriteLine("5 -- Clear Recipe data");
@@ -58,22 +59,22 @@ namespace RecipeApp
                 switch (userChoice)
                 {
                     case 1:
-                        Recipe.InputRecipe();
+                        InputRecipe();
                         break;
 
                     case 2:
-                        Recipe.DisplayRecipe();
+                        DisplayRecipe();
                         break;
 
                     case 3:
-                        Recipe.ScaleRecipe();
+                        ScaleRecipe();
                         break;
 
                     case 4:
-                        Recipe.ResetRecipeScale();
+                        ResetRecipeScale();
                         break;
                     case 5:
-                        Recipe.ClearRecipe();
+                        ClearRecipe();
                         break;
                     case 6:
                         break;
@@ -83,6 +84,106 @@ namespace RecipeApp
             }
             while (userChoice != 6);         
         }
+
+        public static void InputRecipe() 
+        {
+            Recipe newRecipe = new Recipe();
+
+            Console.Clear();
+            Console.WriteLine("*************************RECIPE APP**************************");
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("Enter new recipe details");
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("Please enter recipe name:");
+            newRecipe.recipeName = Console.ReadLine();
+
+
+            Console.WriteLine("Please enter the number of ingredients needed:");
+            int numIngredients = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numIngredients; i++)
+            {
+                Console.Clear();
+                Console.WriteLine($"Enter ingredient {i + 1} name:");
+                string ingrName = Console.ReadLine();
+
+                Console.WriteLine($"Enter ingredient {i + 1} quantity:");
+                double ingrQty = double.Parse(Console.ReadLine());
+
+                Console.WriteLine($"Enter ingredient {i + 1} unit:");
+                string ingrUnit = Console.ReadLine();
+
+                Console.WriteLine($"Enter ingredient {i + 1} calories:")
+
+                bool correctInput = false;
+                double ingrCalories = 0;
+                while (!correctInput)
+                {
+                    try
+                    {
+                        ingrCalories = int.Parse(Console.ReadLine());
+                        if (ingrCalories == double)
+                        {
+                            correctInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter a number.");
+                        }
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please enter a number.");
+                    }
+                }
+
+                Console.WriteLine($"Select ingredient {i + 1} food group:");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("1 -- Starchy foods");
+                Console.WriteLine("2 -- Vegetables and fruits");
+                Console.WriteLine("3 -- Dry beans, peas, lentils and soya");
+                Console.WriteLine("4 -- Chicken, fish, meat and eggs");
+                Console.WriteLine("5 -- Milk and dairy products");
+                Console.WriteLine("6 -- Fats and oil");
+                Console.WriteLine("7 -- Water");
+
+                string ingrFoodGroup;
+                int userChoice = 0;
+
+                switch (userChoice)
+                {
+                    case 1:
+                        
+                        break;
+
+                    case 2:
+                        
+                        break;
+
+                    case 3:
+                        
+                        break;
+
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+
+                    default:
+                        break;
+                }
+
+                newRecipe.InputIngredient(ingrName, ingrQty, ingrUnit,ingrCalories,ingrFoodGroup);
+            }
+
+        }
+
     }
 }
 
