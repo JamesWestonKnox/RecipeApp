@@ -63,6 +63,7 @@ namespace RecipeApp
                         break;
 
                     case 2:
+                        DisplayRecipeList();
                         break;
 
                     case 3:
@@ -214,9 +215,74 @@ namespace RecipeApp
                 Console.WriteLine($"Enter step {i + 1} description:");
                 newRecipe.InputStep(Console.ReadLine());
             }
-
             Recipes.Add(newRecipe);
         }
+
+        public static void DisplayRecipeList()
+        {
+            Recipes.Sort((recipe1, recipe2) => recipe1.recipeName.CompareTo(recipe2.recipeName));
+            Console.Clear();
+            if(Recipes.Count == 0)
+            {
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("No recipes stored.");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Press any key to return to menu.");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Saved Recipes");
+                Console.WriteLine("-------------------------------------------------------------");
+                for (int i = 0; i < Recipes.Count; i++)
+                {
+                    Console.WriteLine($"Recipe {i + 1}:");
+                    Console.WriteLine($"{Recipes[i].recipeName}");
+                    Console.WriteLine("-------------------------------------------------------------");
+                    Console.WriteLine($"Number of ingredients: {Recipes[i].ingredients.Count}");
+                    Console.WriteLine($"Number of steps: {Recipes[i].steps.Count}");
+                    Console.WriteLine("-------------------------------------------------------------");
+                }
+
+                Console.WriteLine("Please enter number of the recipe details you would like to display");
+
+                int userChoice = 0;
+                bool correctInput = false;
+                while (!correctInput)
+                {
+                    try
+                    {
+                        userChoice = int.Parse(Console.ReadLine());
+                        if (userChoice >= 1 && userChoice <= 6)
+                        {
+                            correctInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please choose a valid recipe number.");
+                        }
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please choose a valid recipe number.");
+                    }
+                }
+
+                if( Recipes.Count < userChoice)
+                {
+                    Console.WriteLine("Please choose a valid recipe number.");
+                }
+                else
+                {
+                    Recipes[userChoice - 1].DisplayRecipe();
+                }
+
+            }
+        }
+
+
 
 
 

@@ -46,6 +46,38 @@ namespace RecipeApp
             steps.Add(step);
         }
 
+        public void DisplayRecipe()
+        {
+            Console.Clear();
+            Console.WriteLine("*************************RECIPE APP**************************");
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine($"Recipe: {recipeName}");
+            Console.WriteLine("-------------------------------------------------------------");
+
+            Console.WriteLine("Ingredients:");
+            Console.WriteLine("-------------------------------------------------------------");
+            foreach (var ingredient in ingredients)
+            {
+                foreach (var (ingrQty, ingrUnit, ingrCalories, ingrFoodGroup) in ingredient.Value)
+                {
+                    Console.WriteLine($"{ingrQty} {ingrUnit} of {ingredient.Key}");
+                    Console.WriteLine($"Calories: {ingrCalories}");
+                    Console.WriteLine($"Food type: {ingrFoodGroup}");
+                    Console.WriteLine("-------------------------------------------------------------");
+                }
+            }
+
+            Console.WriteLine("Steps:");
+            Console.WriteLine("-------------------------------------------------------------");
+            for (int i = 0; i < steps.Count; i++)
+            {
+                Console.WriteLine($"Step {i + 1}: {steps[i]}");
+            }
+
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("Press any key to return to menu");
+            Console.ReadKey();
+        }
     }
 }
 
