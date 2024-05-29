@@ -9,7 +9,7 @@ namespace RecipeApp
     internal class Menu
     {
         //Declaring List of recipes.
-        private static List<Recipe> Recipes = new List<Recipe>;
+        private static List<Recipe> Recipes = new List<Recipe>();
 
         //app menu method which displays user menu
         public static void AppMenu()
@@ -63,18 +63,14 @@ namespace RecipeApp
                         break;
 
                     case 2:
-                        DisplayRecipe();
                         break;
 
                     case 3:
-                        ScaleRecipe();
                         break;
 
                     case 4:
-                        ResetRecipeScale();
                         break;
                     case 5:
-                        ClearRecipe();
                         break;
                     case 6:
                         break;
@@ -113,7 +109,7 @@ namespace RecipeApp
                 Console.WriteLine($"Enter ingredient {i + 1} unit:");
                 string ingrUnit = Console.ReadLine();
 
-                Console.WriteLine($"Enter ingredient {i + 1} calories:")
+                Console.WriteLine($"Enter ingredient {i + 1} calories:");
 
                 bool correctInput = false;
                 double ingrCalories = 0;
@@ -122,7 +118,7 @@ namespace RecipeApp
                     try
                     {
                         ingrCalories = int.Parse(Console.ReadLine());
-                        if (ingrCalories == double)
+                        if (ingrCalories > 0)
                         {
                             correctInput = true;
                         }
@@ -148,32 +144,60 @@ namespace RecipeApp
                 Console.WriteLine("6 -- Fats and oil");
                 Console.WriteLine("7 -- Water");
 
-                string ingrFoodGroup;
+                string ingrFoodGroup = "";
                 int userChoice = 0;
+
+                correctInput = false;
+                while (!correctInput)
+                {
+                    try
+                    {
+                        userChoice = int.Parse(Console.ReadLine());
+                        if (userChoice >= 1 && userChoice <= 7)
+                        {
+                            correctInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please choose a number between 1 and 7.");
+                        }
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please choose a number between 1 and 7.");
+                    }
+                }
 
                 switch (userChoice)
                 {
                     case 1:
-                        
+                        ingrFoodGroup = "Starchy foods";
                         break;
 
                     case 2:
-                        
+                        ingrFoodGroup = "Vegetables and fruits";
                         break;
 
                     case 3:
-                        
+                        ingrFoodGroup = "Dry beans, peas, lentils and soya";
                         break;
 
                     case 4:
-                        
+                        ingrFoodGroup = "Chicken, fish, meat and eggs";
                         break;
+
                     case 5:
-                        
+                        ingrFoodGroup = "Milk and dairy products";
                         break;
+
                     case 6:
+                        ingrFoodGroup = "Fats and oil";
                         break;
+
                     case 7:
+                        ingrFoodGroup = "Water";
+                        break;
 
                     default:
                         break;
@@ -182,7 +206,19 @@ namespace RecipeApp
                 newRecipe.InputIngredient(ingrName, ingrQty, ingrUnit,ingrCalories,ingrFoodGroup);
             }
 
+            Console.WriteLine("Please enter the number of steps:");
+            int numSteps = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < numSteps; i++)
+            {
+                Console.WriteLine($"Enter step {i + 1} description:");
+                newRecipe.InputStep(Console.ReadLine());
+            }
+
+            Recipes.Add(newRecipe);
         }
+
+
 
     }
 }
