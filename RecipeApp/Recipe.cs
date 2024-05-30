@@ -105,6 +105,13 @@ namespace RecipeApp
             }
         }
 
+        public void ResetRecipe()
+        {
+            foreach (var ingredient in ingredients.Keys.ToList())
+            {
+                ingredients[ingredient] = new List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>(originalIngredientsQty[ingredient]);
+            }
+        }
 
         public double CalculateTotalCalories()
         {

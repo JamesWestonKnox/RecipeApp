@@ -68,11 +68,14 @@ namespace RecipeApp
                         break;
 
                     case 3:
+                        ScaleRecipes();
                         break;
 
                     case 4:
+                        ResetRecipes();
                         break;
                     case 5:
+                        DeleteRecipes();
                         break;
                     case 6:
                         break;
@@ -121,7 +124,7 @@ namespace RecipeApp
                     try
                     {
                         ingrCalories = int.Parse(Console.ReadLine());
-                        if (ingrCalories > 0)
+                        if (ingrCalories >= 0)
                         {
                             correctInput = true;
                         }
@@ -369,6 +372,66 @@ namespace RecipeApp
                 }
 
                 recipeToScale.ScaleRecipe(scalingValue);
+                Console.WriteLine("Recipe succesfully scaled");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+            }
+        }
+
+        public static void ResetRecipes()
+        {
+            Recipes.Sort((recipe1, recipe2) => recipe1.recipeName.CompareTo(recipe2.recipeName));
+            Console.Clear();
+
+            if (Recipes.Count == 0)
+            {
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("No recipes stored.");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Press any key to return to menu.");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Saved Recipes");
+                Console.WriteLine();
+                for (int i = 0; i < Recipes.Count; i++)
+                {
+                    Console.WriteLine($"Recipe {i + 1}: {Recipes[i].recipeName}");
+                    Console.WriteLine();
+                }
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Please enter recipe number you would like to reset");
+
+                int userChoice = 0;
+                bool correctInput = false;
+                while (!correctInput)
+                {
+                    try
+                    {
+                        userChoice = int.Parse(Console.ReadLine());
+                        if (userChoice >= 1 && userChoice <= Recipes.Count)
+                        {
+                            correctInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter recipe number you would like to reset");
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please enter recipe number you would like to reset");
+                    }
+                }
+
+                Recipes[userChoice - 1].ResetRecipe();
+                Console.WriteLine("Recipe succesfully reset");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+
             }
         }
 
@@ -377,7 +440,62 @@ namespace RecipeApp
             Console.WriteLine(message);
         }
 
+        public static void DeleteRecipes()
+        {
+            Recipes.Sort((recipe1, recipe2) => recipe1.recipeName.CompareTo(recipe2.recipeName));
+            Console.Clear();
 
+            if (Recipes.Count == 0)
+            {
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("No recipes stored.");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Press any key to return to menu.");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Saved Recipes");
+                Console.WriteLine();
+                for (int i = 0; i < Recipes.Count; i++)
+                {
+                    Console.WriteLine($"Recipe {i + 1}: {Recipes[i].recipeName}");
+                    Console.WriteLine();
+                }
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Please enter recipe number you would like to delete");
+
+                int userChoice = 0;
+                bool correctInput = false;
+                while (!correctInput)
+                {
+                    try
+                    {
+                        userChoice = int.Parse(Console.ReadLine());
+                        if (userChoice >= 1 && userChoice <= Recipes.Count)
+                        {
+                            correctInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter recipe number you would like to delete");
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Input was not in correct format.");
+                        Console.WriteLine("Please enter recipe number you would like to delete");
+                    }
+                }
+
+                Recipes.RemoveAt(userChoice - 1);
+                Console.WriteLine("Recipe succesfully deleted");
+                Console.WriteLine("Press any key to return to menu");
+                Console.ReadKey();
+
+            }
+        }
 
     }
 }
