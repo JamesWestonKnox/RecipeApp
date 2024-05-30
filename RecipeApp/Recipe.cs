@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace RecipeApp
 {
-    /// <summary>
-    /// </summary>
+   
     internal class Recipe
     {
         public string recipeName { get; set; }
@@ -18,13 +17,16 @@ namespace RecipeApp
         public List<string> steps { get; set; } = new List<string>();
         public Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>> originalIngredientsQty { get; set; } = new Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>>();
 
+        public delegate void HighCalorieContent (string message);
+        public event HighCalorieContent HighCalorieContentWarning;
+
         public Recipe() { }
 
         public Recipe(string recipeName)
         {
             this.recipeName = recipeName;
         }
-
+       
         public void InputIngredient(string ingrName, double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)
         {
             if (ingredients.ContainsKey(ingrName))
@@ -52,10 +54,9 @@ namespace RecipeApp
             Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine($"Recipe: {recipeName}");
-            Console.WriteLine("-------------------------------------------------------------");
-
+            Console.WriteLine();
             Console.WriteLine("Ingredients:");
-            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine();
             foreach (var ingredient in ingredients)
             {
                 foreach (var (ingrQty, ingrUnit, ingrCalories, ingrFoodGroup) in ingredient.Value)
@@ -63,12 +64,23 @@ namespace RecipeApp
                     Console.WriteLine($"{ingrQty} {ingrUnit} of {ingredient.Key}");
                     Console.WriteLine($"Calories: {ingrCalories}");
                     Console.WriteLine($"Food type: {ingrFoodGroup}");
-                    Console.WriteLine("-------------------------------------------------------------");
+                    Console.WriteLine();
                 }
             }
 
+            double totalCalories = CalculateTotalCalories();
+            Console.WriteLine($"Total Calories: {totalCalories}");
+            Console.WriteLine();
+            
+            if (totalCalories > 300)
+            {
+                HighCalorieContentWarning?.Invoke("Warning: Total calories exceed 300!");
+                Console.WriteLine();
+            }
+
             Console.WriteLine("Steps:");
-            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine();
+
             for (int i = 0; i < steps.Count; i++)
             {
                 Console.WriteLine($"Step {i + 1}: {steps[i]}");
@@ -77,6 +89,20 @@ namespace RecipeApp
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Press any key to return to menu");
             Console.ReadKey();
+        }
+        
+        
+        public double CalculateTotalCalories()
+        {
+            double totalCalories = 0;
+            foreach (var ingredient in ingredients.Values)
+            {
+                foreach (var (ingrQty, ingrUnit, ingrCalories, ingrFoodGroup) in ingredient)
+                {
+                    totalCalories = totalCalories + ingrCalories;
+                }
+            }
+            return totalCalories;
         }
     }
 }

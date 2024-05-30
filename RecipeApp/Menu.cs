@@ -23,8 +23,9 @@ namespace RecipeApp
                 //clears console and prints user menu
                 Console.Clear();
                 Console.WriteLine("*************************RECIPE APP**************************");
-                Console.WriteLine("Please enter the number of your choice");
                 Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Please enter the number of your choice");
+                Console.WriteLine();
                 Console.WriteLine("1 -- Add a new recipe");
                 Console.WriteLine("2 -- Display recipes");
                 Console.WriteLine("3 -- Scale recipe");
@@ -81,16 +82,17 @@ namespace RecipeApp
             }
             while (userChoice != 6);         
         }
-
+       
         public static void InputRecipe() 
         {
             Recipe newRecipe = new Recipe();
+            newRecipe.HighCalorieContentWarning += HighCalorieContentWarningMessage;
 
             Console.Clear();
             Console.WriteLine("*************************RECIPE APP**************************");
             Console.WriteLine("-------------------------------------------------------------");
             Console.WriteLine("Enter new recipe details");
-            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine();
             Console.WriteLine("Please enter recipe name:");
             newRecipe.recipeName = Console.ReadLine();
 
@@ -234,18 +236,14 @@ namespace RecipeApp
             {
                 Console.WriteLine("-------------------------------------------------------------");
                 Console.WriteLine("Saved Recipes");
-                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine();
                 for (int i = 0; i < Recipes.Count; i++)
                 {
-                    Console.WriteLine($"Recipe {i + 1}:");
-                    Console.WriteLine($"{Recipes[i].recipeName}");
-                    Console.WriteLine("-------------------------------------------------------------");
-                    Console.WriteLine($"Number of ingredients: {Recipes[i].ingredients.Count}");
-                    Console.WriteLine($"Number of steps: {Recipes[i].steps.Count}");
-                    Console.WriteLine("-------------------------------------------------------------");
+                    Console.WriteLine($"Recipe {i + 1}: {Recipes[i].recipeName}");
+                    Console.WriteLine();
                 }
-
-                Console.WriteLine("Please enter number of the recipe details you would like to display");
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Please enter recipe number you would like to view!");
 
                 int userChoice = 0;
                 bool correctInput = false;
@@ -254,35 +252,30 @@ namespace RecipeApp
                     try
                     {
                         userChoice = int.Parse(Console.ReadLine());
-                        if (userChoice >= 1 && userChoice <= 6)
+                        if (userChoice >= 1 && userChoice <= Recipes.Count)
                         {
                             correctInput = true;
                         }
                         else
                         {
-                            Console.WriteLine("Please choose a valid recipe number.");
+                            Console.WriteLine("Please enter recipe number you would like to view!");
                         }
                     }
-                    catch (FormatException e)
+                    catch (FormatException)
                     {
                         Console.WriteLine("Input was not in correct format.");
-                        Console.WriteLine("Please choose a valid recipe number.");
+                        Console.WriteLine("Please enter recipe number you would like to view!");
                     }
                 }
-
-                if( Recipes.Count < userChoice)
-                {
-                    Console.WriteLine("Please choose a valid recipe number.");
-                }
-                else
-                {
-                    Recipes[userChoice - 1].DisplayRecipe();
-                }
+                Recipes[userChoice - 1].DisplayRecipe();
 
             }
         }
 
-
+        private static void HighCalorieContentWarningMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
 
 
 
