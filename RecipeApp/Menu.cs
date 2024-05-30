@@ -11,7 +11,9 @@ namespace RecipeApp
         //Declaring List of recipes.
         public static List<Recipe> Recipes = new List<Recipe>();
 
-        //app menu method which displays user menu
+        /// <summary>
+        /// Method to display the original menu of the app
+        /// </summary>
         public static void AppMenu()
         {
             
@@ -85,10 +87,16 @@ namespace RecipeApp
             }
             while (userChoice != 6);         
         }
-       
+
+        /// <summary>
+        /// Method that prompts user for recipe info and creates and populates a new recipe object
+        /// </summary>
         public static void InputRecipe() 
         {
+            //instantaite new recipe object
             Recipe newRecipe = new Recipe();
+
+            //subscribing to the HighCalorie event
             newRecipe.HighCalorieContentWarning += HighCalorieContentWarningMessage;
 
             Console.Clear();
@@ -175,6 +183,7 @@ namespace RecipeApp
                     }
                 }
 
+                //switch case for user food group choice
                 switch (userChoice)
                 {
                     case 1:
@@ -209,6 +218,7 @@ namespace RecipeApp
                         break;
                 }
 
+                //add all new details to recipe object
                 newRecipe.InputIngredient(ingrName, ingrQty, ingrUnit,ingrCalories,ingrFoodGroup);
             }
 
@@ -220,11 +230,16 @@ namespace RecipeApp
                 Console.WriteLine($"Enter step {i + 1} description:");
                 newRecipe.InputStep(Console.ReadLine());
             }
+            //add new recipe to recipe list
             Recipes.Add(newRecipe);
         }
 
+        /// <summary>
+        /// Method that that displays all saved recipes in alphabetical order
+        /// </summary>
         public static void DisplayRecipeList()
         {
+            //sorts recipes in alphabetical order
             Recipes.Sort((recipe1, recipe2) => recipe1.recipeName.CompareTo(recipe2.recipeName));
             Console.Clear();
             if(Recipes.Count == 0)
@@ -270,11 +285,15 @@ namespace RecipeApp
                         Console.WriteLine("Please enter recipe number you would like to view!");
                     }
                 }
+                //invokes display recipe method on chosen recipe
                 Recipes[userChoice - 1].DisplayRecipe();
 
             }
         }
 
+        /// <summary>
+        /// Method to display all recipes and prompt user to choose a recipe aswell as the scaling amount
+        /// </summary>
         public static void ScaleRecipes()
         {
             Recipes.Sort((recipe1, recipe2) => recipe1.recipeName.CompareTo(recipe2.recipeName));
@@ -353,6 +372,7 @@ namespace RecipeApp
                     }
                 }
 
+                //swith case to choose desired scaling value
                 double scalingValue = 0;
                 switch (scalingChoice)
                 {
@@ -371,6 +391,7 @@ namespace RecipeApp
                         break;
                 }
 
+                //invoke scalerecipe method on desired recipe 
                 recipeToScale.ScaleRecipe(scalingValue);
                 Console.WriteLine("Recipe succesfully scaled");
                 Console.WriteLine("Press any key to return to menu");
@@ -378,6 +399,9 @@ namespace RecipeApp
             }
         }
 
+        /// <summary>
+        /// Method to display all recipes and allow a user to pick a recipe and then reset its ingredient values to the original values
+        /// </summary>
         public static void ResetRecipes()
         {
             Recipes.Sort((recipe1, recipe2) => recipe1.recipeName.CompareTo(recipe2.recipeName));
@@ -427,6 +451,7 @@ namespace RecipeApp
                     }
                 }
 
+                //invoke reset recipe method on desired recipe
                 Recipes[userChoice - 1].ResetRecipe();
                 Console.WriteLine("Recipe succesfully reset");
                 Console.WriteLine("Press any key to return to menu");
@@ -435,11 +460,18 @@ namespace RecipeApp
             }
         }
 
+        /// <summary>
+        /// method to display warning message
+        /// </summary>
+        /// <param name="message"></param>
         private static void HighCalorieContentWarningMessage(string message)
         {
             Console.WriteLine(message);
         }
 
+        /// <summary>
+        /// method that allows user to choose a recipe and delete it completely from the recipes list
+        /// </summary>
         public static void DeleteRecipes()
         {
             Recipes.Sort((recipe1, recipe2) => recipe1.recipeName.CompareTo(recipe2.recipeName));
@@ -489,6 +521,7 @@ namespace RecipeApp
                     }
                 }
 
+                //removes desired recipe and index chosen
                 Recipes.RemoveAt(userChoice - 1);
                 Console.WriteLine("Recipe succesfully deleted");
                 Console.WriteLine("Press any key to return to menu");

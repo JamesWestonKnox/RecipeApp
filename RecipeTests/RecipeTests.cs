@@ -7,6 +7,9 @@ namespace RecipeAppTests
     [TestClass]
     public class RecipeTests
     {
+        /// <summary>
+        /// Method to unit test the total calories
+        /// </summary>
         [TestMethod]
         public void TestTotalCalories()
         {
@@ -20,3 +23,5 @@ namespace RecipeAppTests
         }
     }
 }
+
+//--------------------------------------------------------------- oooooo000000000 end of file 000000000oooooo ---------------------------------------------------------------\\

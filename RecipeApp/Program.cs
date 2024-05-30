@@ -8,7 +8,10 @@ namespace RecipeApp
 {
     internal class Program
     {
-       
+       /// <summary>
+       /// Main 
+       /// </summary>
+       /// <param name="args"></param>
         public static void Main(string[] args)
         {
             //Changing text colour to Cyan and then calling the AppMenuMethod

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace RecipeApp
 {
    /// <summary>
-   /// 
+   /// Recipe class
    /// </summary>
     public class Recipe
     {
@@ -29,6 +29,14 @@ namespace RecipeApp
             this.recipeName = recipeName;
         }
        
+        /// <summary>
+        /// Method to input ingrendients into the ingredients dictionary in a new recipe object,using values inputted through InputRecipe method in menu.cs
+        /// </summary>
+        /// <param name="ingrName"></param>
+        /// <param name="ingrQty"></param>
+        /// <param name="ingrUnit"></param>
+        /// <param name="ingrCalories"></param>
+        /// <param name="ingrFoodGroup"></param>
         public void InputIngredient(string ingrName, double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)
         {
             if (ingredients.ContainsKey(ingrName))
@@ -45,11 +53,18 @@ namespace RecipeApp
             originalIngredientsQty[ingrName].Add((ingrQty, ingrUnit, ingrCalories, ingrFoodGroup));
         }
 
+        /// <summary>
+        /// Method to add a step to the step list in the recipe object
+        /// </summary>
+        /// <param name="step"></param>
         public void InputStep(string step)
         {
             steps.Add(step);
         }
 
+        /// <summary>
+        /// Method to display all recipe details of a specific recipe
+        /// </summary>
         public void DisplayRecipe()
         {
             Console.Clear();
@@ -92,6 +107,11 @@ namespace RecipeApp
             Console.WriteLine("Press any key to return to menu");
             Console.ReadKey();
         }
+
+        /// <summary>
+        /// Method to scale recipe ingrdients according to the user choice in the ScaleRecipes method in Menu.cs
+        /// </summary>
+        /// <param name="scalingValue"></param>
         public void ScaleRecipe(double scalingValue)
         {
             foreach (var ingredient in ingredients.Keys.ToList())
@@ -105,6 +125,9 @@ namespace RecipeApp
             }
         }
 
+        /// <summary>
+        /// Method to reset recipe ingredients back to default by setting the ingredient list to the original list
+        /// </summary>
         public void ResetRecipe()
         {
             foreach (var ingredient in ingredients.Keys.ToList())
@@ -113,6 +136,10 @@ namespace RecipeApp
             }
         }
 
+        /// <summary>
+        /// Method that loops through each ingredient in the ingredients dictionary and adds its ingrCalories to a total calorie double.
+        /// </summary>
+        /// <returns></returns>
         public double CalculateTotalCalories()
         {
             double totalCalories = 0;
