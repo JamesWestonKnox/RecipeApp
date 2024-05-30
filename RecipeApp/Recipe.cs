@@ -12,7 +12,7 @@ namespace RecipeApp
    /// <summary>
    /// 
    /// </summary>
-    internal class Recipe
+    public class Recipe
     {
         public string recipeName { get; set; }
         public Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>> ingredients { get; set; } = new Dictionary<string, List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>>();

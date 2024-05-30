@@ -9,7 +9,7 @@ namespace RecipeApp
     internal class Menu
     {
         //Declaring List of recipes.
-        private static List<Recipe> Recipes = new List<Recipe>();
+        public static List<Recipe> Recipes = new List<Recipe>();
 
         //app menu method which displays user menu
         public static void AppMenu()
