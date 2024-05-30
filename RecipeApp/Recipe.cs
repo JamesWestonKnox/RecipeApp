@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace RecipeApp
 {
-   
+   /// <summary>
+   /// 
+   /// </summary>
     internal class Recipe
     {
         public string recipeName { get; set; }
@@ -31,7 +33,7 @@ namespace RecipeApp
         {
             if (ingredients.ContainsKey(ingrName))
             {
-
+                Console.WriteLine("Ingredient already added to recipe.");
             }
             else
             {
@@ -90,8 +92,20 @@ namespace RecipeApp
             Console.WriteLine("Press any key to return to menu");
             Console.ReadKey();
         }
-        
-        
+        public void ScaleRecipe(double scalingValue)
+        {
+            foreach (var ingredient in ingredients.Keys.ToList())
+            {
+                var scaledIngredients = new List<(double ingrQty, string ingrUnit, double ingrCalories, string ingrFoodGroup)>();
+                foreach (var (ingrQty, ingrUnit, ingrCalories, ingrFoodGroup) in ingredients[ingredient])
+                {
+                    scaledIngredients.Add((ingrQty * scalingValue, ingrUnit, ingrCalories * scalingValue, ingrFoodGroup));
+                }
+                ingredients[ingredient] = scaledIngredients;
+            }
+        }
+
+
         public double CalculateTotalCalories()
         {
             double totalCalories = 0;
